@@ -6,4 +6,5 @@ Repository 1: Maze Generating Algorithms in C and C++
 ...
 
 Future projs: A* algorithm, computer vision related algorithms:
-- [Idea 1](https://www.run.ai/guides/deep-learning-for-computer-vision)
+- [With AI](https://www.run.ai/guides/deep-learning-for-computer-vision)
+- [Computer Vision Alo Evolution](https://datagen.tech/guides/computer-vision/algorithms/)
