@@ -197,6 +197,7 @@ int has_won(maze *this, coord *player)
 {
     if (this->map[(*player).y][(*player).x] == 'E') {
         printf("You Win!\n");
+        return 1;
     }
     return 0;
 }
@@ -252,36 +253,38 @@ int main(int argc, char **argv)
     while (!has_won(this_maze, &this_maze->start))
     {
         // get user input
-        char input[5];
-        fgets(input, 3, stdin); // fgets prevents buffer overflow exploits ;)
-        printf("%s\n", input);
-        if (input[1] != '\n')
+        char* input = malloc(2);
+        scanf("%2s", input); // 2 characters max, no buffer-overflow exploit possible
+        if (strlen(input) != 1)
         {
-            printf("Error: Invalid input1\n");
-            continue;
+            printf("Error: Invalid input\n");
+            free(input);
         }
-        //  Need to clear the stdin.
-        switch (tolower(input[0]))
+        else
         {
-            case 'w':
-                move(this_maze, &this_maze->start, input[0]);
-                break;
-            case 'a':
-                move(this_maze, &this_maze->start, input[0]);
-                break;
-            case 's':
-                move(this_maze, &this_maze->start, input[0]);
-                break;
-            case 'd':
-                move(this_maze, &this_maze->start, input[0]);
-                break;
-            case 'm':
-                print_maze(this_maze, &this_maze->start);
-                break;
-            default:
-                printf("Error: Invalid input2\n");
-                break;
+            switch (tolower(input[0]))
+            {
+                case 'w':
+                    move(this_maze, &this_maze->start, input[0]);
+                    break;
+                case 'a':
+                    move(this_maze, &this_maze->start, input[0]);
+                    break;
+                case 's':
+                    move(this_maze, &this_maze->start, input[0]);
+                    break;
+                case 'd':
+                    move(this_maze, &this_maze->start, input[0]);
+                    break;
+                case 'm':
+                    print_maze(this_maze, &this_maze->start);
+                    break;
+                default:
+                    printf("Error: Invalid input.\n");
+                    break;
+            }
         }
+        
     }
     // preventing a memory leak
     free_maze(this_maze);
