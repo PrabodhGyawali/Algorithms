@@ -10,7 +10,6 @@ struct __Graph {
 } typedef graph;
 
 int main() {
-    // Create a graph
     graph g;
 
     return 0;
