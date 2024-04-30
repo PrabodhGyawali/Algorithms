@@ -86,7 +86,7 @@ int validate_char(char buffer[], int* s_counter, int* e_counter) {
         }
         else {
             // printf("Invalid character in index %d\n", i);
-            // printf("Error: Invalid character in maze!\n");
+            printf("Error: Invalid character in maze!\n");
             return 0;
         }
     }

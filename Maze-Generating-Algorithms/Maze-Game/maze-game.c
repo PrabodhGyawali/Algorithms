@@ -67,33 +67,38 @@ char** return_2D_char_array(FILE *fptr, int width, int total) {
     return strings;
 }
 
+/**
+ * @brief dynamically initializes a maze struct
+ * @param fptr : file pointer to initialize the maze
+ * @param width : # of columns
+ # @param height : # of rows
+ **/
 void create_maze(maze* this, FILE* fptr, int width, int height) {
-    printf("Creating a %dx%d maze...\n", width, height);
     // Reset pointer to file
     rewind(fptr);
     // initialize this.start, this.end coords
-    char filecontent[width + 1];
+    char* filecontent = (char *)malloc(width + 1);
+
     int i = 0;
     while (fgets(filecontent, width + 1, fptr) != NULL) {
         for (int j = 0; j < width; j++) {
-            if (filecontent[j] == '\n') {
+            if (*(filecontent + j) == '\n') {
                 i++;
                 break;
             }
-            
             // Initialize start and end coordinates
-            if (filecontent[j] == 'S') {
+            if (*(filecontent + j) == 'S') {
                 (*this).start.x = j;
                 (*this).start.y = i;
             }
-            if (filecontent[j] == 'E') {
+            if (*(filecontent + j) == 'E') {
                 (*this).end.x = j;
                 (*this).end.y = i;
             }
-        }
-        
+        }  
     }
     // Set the width and height
+    free(filecontent);
     (*this).height = height;
     (*this).width = width;
     // Initialize the map
@@ -105,8 +110,12 @@ void create_maze(maze* this, FILE* fptr, int width, int height) {
  *
  * @param this the pointer to the struct to free
  */
-void free_maze(maze *this)
+void free_maze(maze *this, int height)
 {
+    for (int i = 0; i < this->height; i++)
+    {
+        free(this->map[i]);
+    }
     free(this->map);
     free(this);
 }
@@ -258,6 +267,10 @@ int main(int argc, char **argv)
         if (strlen(input) != 1)
         {
             printf("Error: Invalid input\n");
+            if (getchar() != '\n') {
+                // As scanf(%2s) breaks the stdin into 2 characters and a newline character
+                continue;
+            } 
             free(input);
         }
         else
@@ -283,11 +296,11 @@ int main(int argc, char **argv)
                     printf("Error: Invalid input.\n");
                     break;
             }
+            free(input);
         }
-        
     }
-    // preventing a memory leak
-    free_maze(this_maze);
+    // Preventing a memory leak
+    free_maze(this_maze, height);
     // Returning winning value
     return EXIT_SUCCESS;
 }
