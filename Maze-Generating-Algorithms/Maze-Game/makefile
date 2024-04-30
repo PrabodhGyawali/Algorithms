@@ -1,8 +1,8 @@
 CC=gcc
 CFLAGS=-I.
 
-DEPS = file_reader.h
-OBJ = maze.o file_reader.o 
+DEPS = file-reader.h
+OBJ = maze-game.o file-reader.o 
 
 %.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
@@ -13,4 +13,4 @@ maze: $(OBJ)
 clean:
 	rm -f $(OBJ) maze
 debug:
-	$(CC) -g -o maze maze.c file_reader.c -I.
+	$(CC) -g -o maze maze-game.c file-reader.c -I.

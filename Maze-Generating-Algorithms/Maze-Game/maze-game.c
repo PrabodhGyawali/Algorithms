@@ -2,20 +2,17 @@
  * @file maze.c
  * @author (Prabodh Gyawali)
  * @brief Code for the maze game for COMP1921 Assignment 2
- * NOTE - You can remove or edit this file however you like - this is just a provided skeleton code
- * which may be useful to anyone who did not complete assignment 1.
  */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-// Custom file headers
-#include "file_reader.h"
 #include <ctype.h>
-// Cool fact is that changing 5th bit of 6 byte char enoding changes from upper to lower case
+// Custom file headers
+#include "file-reader.h"
 
 /**
- * @file file_reader.c
+ * @file file-reader.c
  * @author (Prabodh Gyawali)
  * @brief defines functions for checking arguements, reading and validating the maze file
  */
@@ -67,15 +64,6 @@ char** return_2D_char_array(FILE *fptr, int width, int total) {
         strings[i] = malloc(length * sizeof(char *));
         strcpy(strings[i], buffer);
     }
-    /* Archived reference code */
-    // printf("\nResulting strings array: \n\n");
-    // for (int i = 0; i < total; i++) {
-    //     for (int j = 0; j < width; j++) {
-    //         printf("%c", strings[i][j]);
-    //     }
-    //     printf("\n");
-    // }
-
     return strings;
 }
 
@@ -119,6 +107,8 @@ void create_maze(maze* this, FILE* fptr, int width, int height) {
  */
 void free_maze(maze *this)
 {
+    free(this->map);
+    free(this);
 }
 
 /**
@@ -294,7 +284,7 @@ int main(int argc, char **argv)
         }
     }
     // preventing a memory leak
-    free(this_maze);
+    free_maze(this_maze);
     // Returning winning value
     return EXIT_SUCCESS;
 }

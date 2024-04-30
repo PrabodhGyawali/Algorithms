@@ -70,6 +70,10 @@ int validate_char(char buffer[], int* s_counter, int* e_counter) {
     char valid_chars[5] = "# SE\n"; 
     
     for (int i = 0; i < strlen(buffer); i++) {
+        // strchr(s, c) returns the pointer to first occurence to the character c in the string s
+        if (buffer[i] == '\0') {
+            continue;
+        }
         if (strchr(valid_chars, buffer[i]) != NULL) {
             // Contains valid character
             if (buffer[i] == 'S') {
@@ -77,10 +81,12 @@ int validate_char(char buffer[], int* s_counter, int* e_counter) {
             } else if (buffer[i] == 'E') {
                 (*e_counter)++;
             } 
+            // printf("Valid character\n");
             continue;
         }
         else {
-            printf("Error: Invalid character in maze!\n");
+            // printf("Invalid character in index %d\n", i);
+            // printf("Error: Invalid character in maze!\n");
             return 0;
         }
     }
