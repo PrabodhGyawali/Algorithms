@@ -80,11 +80,10 @@ void free_maze(maze *this)
 
 /**
  * @brief Prints the maze out - code provided to ensure correct formatting
- *
  * @param this pointer to maze to print
  * @param player the current player location
  */
-void print_maze(maze* this, coord* player)
+void print_maze1(maze* this, coord* player)
 {
     // make sure we have a leading newline..
     printf("\n");
@@ -105,6 +104,16 @@ void print_maze(maze* this, coord* player)
         }
         printf("\n"); 
     }
+}
+void print_maze2(char** map) {
+    printf("reached here");
+    for (int i = 0; i < sizeof(map); i++) {
+        for (int j = 0; j < sizeof(map[i]); j++) {
+            printf("%c", map[i][j]);
+        }
+        printf("\n");
+    }
+
 }
 
 /**

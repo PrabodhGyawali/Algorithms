@@ -16,4 +16,5 @@
 - Repeat until `stack` is empty
 
 ## Representing a maze as a graph
-- open spaces that the user can move to will be nodes
+- Create a maze struct based on a .txt file using the `create_maze(...)` function in `maze.c`
+- Once created 

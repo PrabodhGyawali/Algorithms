@@ -23,7 +23,8 @@ typedef struct __Maze
 char** return_2D_char_array(FILE *fptr, int width, int total);
 void create_maze(maze* this, FILE* fptr, int width, int height);
 void free_maze(maze *this);
-void print_maze(maze* this, coord* player);
+void print_maze1(maze* this, coord* player);
+void print_maze2(char** map);
 void move(maze *this, coord *player, char direction);
 int has_won(maze *this, coord *player);
 
