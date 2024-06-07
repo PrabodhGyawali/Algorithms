@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include "maze.h"
+#include <gtk/gtk.h>
 /**
  * @brief The maze graph is a connected graph with 1 node for each open movable space in the maze
  * @param nodes An array of coord representing the node's (x, y)
@@ -47,6 +48,14 @@ char** create_empty_maze(int width, int height) {
     }
     return map;
 }
+void destroy(GtkWidget *widget, gpointer data) {
+    gtk_main_quit();
+}
+
+static void print_hello (GtkWidget *widget, gpointer data) {
+    g_print("Hello World\n");
+}
+
 
 int main(int argc, char *argv[]) {
     // make sure only 2 arguements are passed with width and height of the maze
@@ -59,5 +68,11 @@ int main(int argc, char *argv[]) {
     // create a maze with the given width and height
     char** maze = create_empty_maze(width, height);
     print_maze2(maze);
+
+    // Create a GUI window to visualize depth search algorithm
+    GtkWidget *window;
+    
+
+
     return 0;
 }

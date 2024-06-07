@@ -18,3 +18,6 @@
 ## Representing a maze as a graph
 - Create a maze struct based on a .txt file using the `create_maze(...)` function in `maze.c`
 - Once created 
+
+# Coding Aspects:
+- adding a GUI -> GTK

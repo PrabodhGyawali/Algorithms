@@ -17,4 +17,4 @@ depth-first: $(OBJ)
     $(CC) -o $@ $^ $(CFLAGS)
 
 clean:
-    rm -f $(OBJ) depth-first
+    rm -f $(OBJ) generator
