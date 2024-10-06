@@ -40,65 +40,44 @@ char** splitString(char* sentence, int* wordCount) {
 }
 
 bool areSentenceSimilar(char* sentence1, char* sentence2) {
+    if (strcmp(sentence1, sentence2) == 0) 
+        return true;
     
     // Find the longest sentence
-    int s1_len = 0;
-    int s2_len = 0;
+    int s1_len = 0, s2_len = 0;
    
     char** s1_words = splitString(sentence1, &s1_len);
     char** s2_words = splitString(sentence2, &s2_len);
 
-    if (s1_len > s2_len) {
-        // Do an edge similarity check 
-        for (int i = 0; i < s2_len; i++)
-        {
-            bool front = false;
-            bool back = false;
-            // Check front match
-            if (strcmp(s1_words[i], s2_words[i]) == 0) {
-                front = true;
-            }
-            // Check back match
-            if (stcmp(s1_words[s1_len - 1], s1_words[s2_len -1]) == 0) {
-                back = true;
-            }
-        }
-        return true;
-    }
-    else if (s2_len > s1_len) {
-        // Do an edge similarity check 
-        for (int i = 0; i < s2_len; i++)
-        {
-            bool front = false;
-            int front_count = 0;
-            
-            bool back = false;
-            int back_count = 0;
-            // Check front match
-            if (strcmp(s1_words[i], s2_words[i]) == 0) {
-                front = true;
-                front_count++;
-            }
-            // Check back match
-            if (stcmp(s1_words[s1_len - 1], s1_words[s2_len -1]) == 0) {
-                back = true;
-                back_count++;
-            }
-        }
-        return true;
-    }
-    else {
-        for (int i = 0; i < s1_len; i++)
-        {
-            if (strcmp(s1_words[i], s2_words[i]) != 0) {
-                return false;
-            }
-        }
-        return true;
+    int s1si = 0, s1ei = s1_len - 1;
+    int s2si = 0, s2ei = s2_len - 1;
+    
+    // Front match increment
+    while (s1si <= s1ei && s2si <= s2ei && strcmp(s1_words[s1si], s2_words[s2si]) == 0) {
+        s1si++;
+        s2si++;
     }
 
+    // Back match decrement
+    while (s1si <= s1ei && s2si <= s2ei && strcmp(s1_words[s1ei], s2_words[s2ei]) == 0) {
+        s1ei--;
+        s1ei--;
+    }
 
-    return true;
+    for (int i = 0; i < s1_len; i++)
+    {
+        free(s1_words[i]);
+    }
+    for (int i = 0; i < s2_len; i++)
+    {
+        free(s2_words[i]);
+    }
+    free(s1_words);
+    free(s2_words);
+    
+    
+    // shortest sentence's end index is less than its start index
+    return s1ei < s1si || s2ei < s2si;
 }
 
 int main() {
