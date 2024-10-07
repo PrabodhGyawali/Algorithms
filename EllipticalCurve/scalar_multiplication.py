@@ -24,4 +24,6 @@ def double_and_add(n, x):
 """
 Assuming doubling and adding have O(1) time complexity
 The time complexity of this algorithm is O(log n) or O(k) - where k is the number of bits in n
+
+We go from 420 operations to 9 operations
 """
