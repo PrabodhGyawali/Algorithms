@@ -4,25 +4,29 @@
 #include <stdio.h>
 #include <stdint.h>
 
-enum cell_state_t {
-	WALL;
-	HOLE;
-	SOLUTION;
-} state;
+typedef enum {
+        WALL,
+        HOLE,
+        SOL
+} cell_state_t;
 
-void maze_generator(uint32_t height, uint32_t width);
+typedef struct maze_t {
+ 	cell_state_t** cells;
+	uint32_t height;
+	uint32_t width;
+} maze_t;
 
-void set_cell(uint32_t x, uint32_t);
-cell_state_t get_cell(uint32_t x, uint32_t);
 
-uint32_t** get_maze(void);
+maze_t* maze_generator(uint32_t height, uint32_t width);
 
-void set_maze(uint32_t** maze);
+void set_cell(maze_t* maze, uint32_t y, uint32_t x, cell_state_t state);
+cell_state_t get_cell(maze_t* maze, uint32_t y, uint32_t x);
 
-void reshape(uint32_t new_height, uint32_t new_width);
 
-uint32_t get_height(void);
-uint32_t get_width(void);
+int reshape(maze_t* maze, uint32_t new_height, uint32_t new_width);
+
+uint32_t get_height(maze_t* maze);
+uint32_t get_width(maze_t* maze);
 
 // TODO: Look into what random device and private C++ functions mean means
 

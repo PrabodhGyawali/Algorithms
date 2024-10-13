@@ -1,6 +1,7 @@
 #include <vector>
 #include <functional>
-#include <iostream>
+
+#include "euler.h"
 
 using std::vector;
 
@@ -22,19 +23,4 @@ std::pair<vector<double>, vector<double>> euler_method(Func f, double t0, double
     }
 
     return {t, x};
-}
-
-int main() {
-    Func f = [](double t, double x) -> double {
-        return -0.5 * x * t;
-    };
-
-    auto [t, x] = euler_method(f, 0.0, 1.0, 1, 0.1);
-
-    // Print the results
-    for (size_t i = 0; i < t.size(); ++i) {
-        std::cout << "t: " << t[i] << ", x: " << x[i] << std::endl;
-    }
-
-    return 0;
 }
