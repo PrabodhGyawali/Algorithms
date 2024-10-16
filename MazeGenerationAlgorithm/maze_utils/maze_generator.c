@@ -51,7 +51,7 @@ maze_t* maze_generator(uint32_t height, uint32_t width) {
 	}
 		
 	//// Generate Maze using one of the algorithms below
-	// recursive_backtracking_generate(maze);
+	recursive_backtracking_generate(maze);
 	// algorithm_aldous(maze);
 	// algorithm_binary(maze);
 	// algorithm_kruskal(maze);
@@ -116,10 +116,13 @@ void print_maze(maze_t* maze) {
 				break;
 			case HOLE:
 				printf(" ");
+				break;
 			case SOL:
 				printf("S");
+				break;
 			default:
-				fprintf(stderr, "Error: invalid state!");
+				printf("!");
+				// fprintf(stderr, "Error: invalid state at (%d, %d)!\n", x, y);
 				break;
 			} (cells[y][x]);
 		}
