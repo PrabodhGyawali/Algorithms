@@ -30,5 +30,10 @@ uint32_t get_width(maze_t* maze);
 
 // TODO: Look into what random device and private C++ functions mean means
 
+void print_maze(maze_t* maze);
+
+void animate_maze(maze_t* maze);
+
+
 #endif /* MAZE_GENERATOR_H */
 

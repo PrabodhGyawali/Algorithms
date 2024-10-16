@@ -15,7 +15,5 @@ Maze Solvers:
 - Wall follower
 
 Goals:
-- Implement in C++ to C by translation
+- Learn about algorithms by implement C++ structured code in C
 - Go from C to C++ -> Memory and C++ best practices
-
-

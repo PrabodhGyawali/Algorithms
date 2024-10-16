@@ -1,6 +1,6 @@
 #include "recursive_backtracking.h"
 #include <stdlib.h>
-#include "maze_generator.h"
+#include "../maze_utils/maze_generator.h"
 #include <time.h>
 #include <stdio.h>
 
@@ -37,8 +37,8 @@ void recurvise_backtracking_crave_passage(uint32_t y, uint32_t x) {
     for (size_t i = 0; i < n; i++) {
         printf("%d ", directions[i]);
     }
-    printf("\n");
+    printf("Running backtrack\n");
 	
 	// Go through each direction inside the randomly filled vector
-
+	
 }
