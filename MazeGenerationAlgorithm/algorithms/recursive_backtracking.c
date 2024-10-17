@@ -26,10 +26,6 @@ void shuffle(uint32_t* array, size_t n) {
 }
 
 void recursive_backtracking_crave_passage(maze_t* maze, uint32_t y, uint32_t x) {
-
-	uint32_t current_y = y;
-	uint32_t current_x = x;
-	
 	// Directions we can go
 	uint32_t directions[4] = {
 		0x1, 		// North 
@@ -41,52 +37,34 @@ void recursive_backtracking_crave_passage(maze_t* maze, uint32_t y, uint32_t x) 
 
 	shuffle(directions, n);
 	// Print the shuffled directions
-    printf("%d %d %d %d\n", directions[0], directions[1], directions[2], directions[3]);
+    printf("called \n");
 	// Go through each direction inside the randomly filled vector
 	for (size_t i = 0; i < n; i++) {
-		switch (directions[i]) {
-			case 0x1:
-				if ((current_y +=1) >= maze->height) 
-					continue;
-				
-				if (maze->cells[current_y + 1][current_x] == HOLE) 
-					continue;
-				
-				current_y += 1;
-				maze->cells[current_y][current_x] = HOLE;
-				break;
-			case 0x2:
-				if ((current_x +=1) >= maze->width) 
-					continue;
-				
-				if (maze->cells[current_y][current_x + 1] == HOLE)
-					continue;
-				current_x += 1;
-				maze->cells[current_y][current_x] = HOLE;
-				break;
-			case 0x3:
-				if ((current_x -=1) < 0)
-					continue;
-
-				if ((maze->cells[current_y][current_x - 1]) == HOLE)
-					continue;
-				current_x -= 1;
-				maze->cells[current_y][current_x] = HOLE;
-				break;
-			case 0x4:
-				if ((current_y -=1) < 0) 
-					continue;
-				
-				if ((maze->cells[current_y - 1][current_x]) == HOLE)
-					continue;
-				current_y += 1;
-				maze->cells[current_y][current_x] = HOLE;
-				break;
-			default:
-				fprintf(stderr, "Invalid direction!\n");
-				break;
-		}
-		// TODO: Implement recursion back to starting position
-
+		uint32_t new_y = y;
+        uint32_t new_x = x;
+		 switch (directions[i]) {
+            case 0x1: // North
+                if (y + 1 >= maze->height) continue;
+                new_y = y + 1;
+                break;
+            case 0x2: // East
+                if (x + 1 >= maze->width) continue;
+                new_x = x + 1;
+                break;
+            case 0x3: // West
+                if (x == 0) continue;
+                new_x = x - 1;
+                break;
+            case 0x4: // South
+                if (y == 0) continue;
+                new_y = y - 1;
+                break;
+            default:
+                fprintf(stderr, "Invalid direction!\n");
+                continue;
+        }
+		if (maze->cells[new_y][new_x] == HOLE) continue;
+		maze->cells[new_y][new_x] = HOLE;
+		recursive_backtracking_crave_passage(maze, new_y, new_x);
 	}
 }
