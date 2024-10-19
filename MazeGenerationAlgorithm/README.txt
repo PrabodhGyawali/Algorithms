@@ -1,13 +1,18 @@
 Implementing from:
 - https://github.com/ferenc-nemeth/maze-generation-algorithms
 
-Maze Generators:
+### Maze Generators:
 - Aldous Border
 - Binary tree
 - Kruskal
 - Prim's
 - Recursive Backtracking
 - Recursive Division
+
+### Running a Maze generator:
+>`python3 -m venv .venv`
+>`./.venv/bin/python3 install -r "requirements.txt"`
+>`make && ./maze_app > output.txt && ./.venv/bin/python3 animation/ocv_python/animate.py`
 
 Maze Solvers:
 - Dead-end filling
@@ -17,9 +22,11 @@ Maze Solvers:
 Animations: FINAL TEST
 - OpenCV python as GTK is super annoying to configure
 
+
+
 Performance tests
-- for varios maze sizes
+- for various maze sizes
 
 Goals:
 - Learn about algorithms by implement C++ structured code in C
-- Go from C to C++ -> Memory and C++ best practices
+- Learn OpenCV python for animation and computer vision algorithms
