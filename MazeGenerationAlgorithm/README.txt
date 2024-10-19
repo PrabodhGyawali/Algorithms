@@ -14,6 +14,12 @@ Maze Solvers:
 - Dijkstra's
 - Wall follower
 
+Animations: FINAL TEST
+- OpenCV python as GTK is super annoying to configure
+
+Performance tests
+- for varios maze sizes
+
 Goals:
 - Learn about algorithms by implement C++ structured code in C
 - Go from C to C++ -> Memory and C++ best practices

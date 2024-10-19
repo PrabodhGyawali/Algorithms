@@ -12,7 +12,7 @@ void recursive_backtracking_generate(maze_t* maze) {
 	recursive_backtracking_crave_passage(maze, random_y, random_x);
 }
 
-void shuffle(uint32_t* array, size_t n) {
+static void shuffle(uint32_t* array, size_t n) {
 	if (n > 1) {
 		size_t i;
 		for (i = 0; i < n - 1; i++) {
@@ -36,8 +36,9 @@ void recursive_backtracking_crave_passage(maze_t* maze, uint32_t y, uint32_t x) 
 	size_t n = sizeof(directions) / sizeof(directions[0]);
 
 	shuffle(directions, n);
-	// Print the shuffled directions
-    printf("called \n");
+	// Print the y,x value
+	printf("%u,%u\n", y, x);
+    // print_maze(maze);
 	// Go through each direction inside the randomly filled vector
 	for (size_t i = 0; i < n; i++) {
 		uint32_t new_y = y;

@@ -128,7 +128,7 @@ void print_maze(maze_t* maze) {
 		}
 		printf("\n");
 	}
-	
+	printf("\n--------------------------------\n");
 }
 
 void animate_maze(maze_t* maze);
