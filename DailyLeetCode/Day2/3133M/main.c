@@ -18,6 +18,14 @@ long long binary_to_decimal(const char* binary) {
     return decimal;
 }
 
+// Safer concatenation using strings
+long long concat(long long a, long long b) {
+    char result[65] = {0};  
+    sprintf(result, "%lld%lld", a, b);
+    printf("Concatenated: %s\n", result);
+    return atoll(result);
+}
+
 long long decimal_to_binary(int decimal) {
 	if (decimal == 0) {
 		return 0;
@@ -47,10 +55,11 @@ long long minEnd(int n, int x) {
         // Get bit representation of n
 		nums[i] = decimal_to_binary(i);
 		// Join this integer with binary_x
-		nums[i] = nums[i] & binary_x;
+		nums[i] = concat(binary_x, nums[i]);
 		char binary_str[65];
 		sprintf(binary_str, "%lld", nums[i]);
-		nums[i] = binary_to_decimal(binary_str);
+		long long elem_long = binary_to_decimal(binary_str);
+		nums[i] = elem_long;
     }
 	long long ans = nums[n-1];
 	free(nums);
